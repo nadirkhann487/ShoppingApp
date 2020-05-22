@@ -1,0 +1,29 @@
+<div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="topNav">
+		<div class="container">
+			<div class="alignR">
+				
+				
+				<a href="cart.html"><span class="icon-shopping-cart"></span>  <%= link_to pluralize(current_cart.items_count,'item'), cart_path %><span class="badge badge-warning"> <%= link_to number_to_currency current_cart.sub_total %></span></a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--
+Lower Header Section 
+-->
+<div class="container">
+<header id="header">
+<div class="row">
+	<div class="span4">
+	<h1>
+	<a class="logo" href="index.html">
+		<div class = "img"><%= link_to image_tag("logo-bootstrap-shoping-cart.png"),root_path %> </div>
+	</a>
+	</h1>
+	</div>
+	
+	
+</div>
+</header>

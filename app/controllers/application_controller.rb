@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
 	before_action :current_cart
+	before_action :site_search
+
 	def current_cart
 		@current_cart ||= ShoppingCart.new(token: cart_token)
 	end
@@ -12,5 +14,10 @@ class ApplicationController < ActionController::Base
 
 		session[:cart_token] ||= SecureRandom.hex{8}
 		@cart_token = session[:cart_token]
+	end
+
+	def site_search
+		@q = Category.ransack(params[:q])
+		@search_categories = @q.result
 	end
 end

@@ -1,11 +1,26 @@
-<h2>Categories <%= @categories.length%></h2>
 
-<ul>
-	<% @categories.each do |cat| %>
-		<li>
-			<%= link_to category_products_path(cat) do %>
-		 		<%= cat.title %> (<%= cat.products_count %>) 
-		 	<% end %>
-		</li>	
-	<% end %>
-</ul>
+
+<%= render "partials/header" %>
+
+<div class="navbar">
+
+	<h3>Available Categories (<%= @categories.length %>) </h3>
+		<ul class="thumbnails">
+			<% @categories.each do |cat| %>
+			<li class="span3">
+			  <div class="thumbnail">
+			  	<%= link_to category_products_path(cat) do %>
+				<div class = "img"><%= image_tag(cat.image,style:'height:220px')%></div>
+				<div class="caption cntr">
+					<p><strong> <%= cat.title %></strong></p>
+					<p> (<%= cat.products_count %> Items)</p>				
+					<br class="clr">
+				</div>
+				<% end %>
+			  </div>
+			</li>
+			<% end %>
+		</ul>
+
+</div>
+<%= render "partials/footer" %>

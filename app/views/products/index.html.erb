@@ -1,23 +1,69 @@
-<h2> Category/<%= @category.title %>/
+<%= render "partials/header" %>
 
- 	Products
 
-</h2>
 
+
+<h2> Category/<%= @category.title %>/Products</h2>
+
+<!--
+Lower Header Section 
 <ol>
 	<% @products.each do |product| %>
-		<li>
-			<%= product.title %> (<%= number_to_currency product.price %>)
-				<%= form_tag order_items_path do %>
-					<%= hidden_field_tag :product_id,product.id %>
-					<%= number_field_tag :quantity,1 %>
-					<%= submit_tag "Add to Cart" %>
-				<% end %>
-			<ul>
-				<% product.variants.each do |variant| %>
-				<li><%= variant.title %> (<%= number_to_currency variant.price %>)</li>
-				<% end %>
-			</ul>
-		</li>
+	<li>
+		<%= product.title %> (<%= number_to_currency product.price %>)
+		<%= form_tag order_items_path do %>
+		<%= hidden_field_tag :product_id,product.id %>
+		<%= number_field_tag :quantity,1 %>
+		<%= submit_tag "Add to Cart" %>
+		<% end %>
+		<ul>
+			<% product.variants.each do |variant| %>
+			<li><%= variant.title %> (<%= number_to_currency variant.price %>)</li>
+			<% end %>
+		</ul>
+	</li>
 	<% end %>
 </ol>
+-->
+
+<% @products.each do |product| %>
+<div class="row-fluid">
+	<div class="span5">
+		<div id="myCarousel" class="carousel slide cntr">
+			<div class="carousel-inner">
+				<div class="item active">
+					<%= image_tag(product.image,style:'height:220px', width: '100%')%>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div class="span7">
+		<h3><%= product.title %> [<%= number_to_currency product.price %>]</h3>
+		<hr class="soft"/>
+
+
+		<%= form_tag order_items_path do %>
+		<div class="control-group">
+			<label class="control-label"><span><%= number_to_currency product.price %></span></label>
+			<div class="controls">
+				<%= hidden_field_tag :product_id,product.id %>
+				<%= number_field_tag :quantity,1 %>
+			</div>
+		</div>
+
+		<h4>Description</h4>
+		<p><%= product.description %>
+		</p>
+		<div class="control-group">
+			<div class="controls">
+				<button type="submit" class="shopBtn">Add to Cart</button>
+			</div>
+		</div>
+		<% end %>
+
+	</div>
+</div>
+<br />
+<% end %>
+<%= render "partials/footer" %>

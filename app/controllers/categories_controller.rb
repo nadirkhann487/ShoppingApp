@@ -1,5 +1,7 @@
 class CategoriesController < ApplicationController
   def index
   	@categories = Category.joins(:products).select('categories.*,count(products.id) as products_count').group('categories.id').order(:title)
+  	@q = Category.ransack(params[:q])
+	
   end
 end

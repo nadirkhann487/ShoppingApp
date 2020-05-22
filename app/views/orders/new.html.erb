@@ -1,5 +1,9 @@
-<h2>Checkout </h2>
+<%= render "partials/header" %>
 
+
+<div class="checkout">
+<h2>Checkout </h2>
+<!--
 <%= form_for @order, url: checkout_path do |f| %>
 
 	<div class="form-group">
@@ -13,3 +17,40 @@
 	</div>
 	<%= f.submit 'Checkout' %>
 <% end %>
+</div>
+
+-->
+
+<%= form_for @order, url: checkout_path do |f| %>
+<div class="control-group">
+		<label class="span2 control-label" for="inputEmail">FirstName</label>
+		<div class="controls">
+			<%= f.text_field :first_name %>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="span2 control-label" for="inputEmail">Last Name</label>
+		<div class="controls">
+			<%= f.text_field :last_name %>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="span2 control-label" for="inputEmail">Country</label>
+		<div class="controls">
+			<input type="text" placeholder="Country">
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="span2 control-label" for="inputPassword">Post Code/ Zipcode</label>
+		<div class="controls">
+			<input type="password" placeholder="Password">
+		</div>
+	</div>
+	<div class="control-group">
+		<div class="controls">
+			<button type="submit" class="shopBtn">Click to Check out</button>
+		</div>
+	</div>
+<% end %>
+</form> 
+</div>
